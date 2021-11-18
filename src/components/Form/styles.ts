@@ -12,7 +12,6 @@ export const Container = styled.form`
 
     border-radius: 2rem;
 
-
     button{
         margin: 0 3rem;
         margin-bottom: 1rem;
@@ -36,18 +35,20 @@ export const ItemForm = styled.div`
     display: flex;
     flex-direction: column;
 
-    span{ 
+    label{ 
         color: #00673D;
         font-size: 1.5rem;
+        margin-bottom: 1.2rem;
     }
 
-    input{
-        background: #F5F8FA;
-        border: 1px solid #00673D;
-        margin-top: 1rem;
-        padding: 1rem;
-        border-radius: 2rem;
-        font: 1.2rem;
+    .filter__option {
+        background: #f5f8fa !important;
+        color: #5c8599 !important;
     }
+
+    .filter__option--is-focused {
+    background: #d3e2e5 !important;
+    color: #010101 !important;
+}
 
 `

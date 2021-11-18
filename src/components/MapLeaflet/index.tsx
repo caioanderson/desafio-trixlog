@@ -9,8 +9,8 @@ export function MapLeaflet() {
         <Container>
             <MapContainer
                 style={{ height: '100vh', position: 'relative' }}
-                center={[51.505, -0.09]}
-                zoom={13}
+                center={[-3.71839, -38.5434]}
+                zoom={18}
                 scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
