@@ -12,6 +12,10 @@ export const Container = styled.form`
 
     border-radius: 2rem;
 
+    span{
+        color: #000;
+    }
+
     button{
         margin: 0 3rem;
         margin-bottom: 1rem;
@@ -24,31 +28,51 @@ export const Container = styled.form`
         height: 3rem;
         border-radius: 3rem;
 
+        transition: filter .2s;
+
+    }
+
+    button:hover{
+        filter: brightness(0.8);
     }
 
 `
 
 export const ItemForm = styled.div`
 
-    margin: 3rem;
+    margin-left: 3rem;
+    margin-top: 3rem;
 
     display: flex;
     flex-direction: column;
+
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        button{
+        width: 12%;
+
+        background: #00673D;
+        color: #fff;
+        font-weight: bold;
+        font-size: 2rem;
+        height: 3rem;
+        border-radius: 5rem;
+
+        transition: filter .2s;
+
+        button:hover{
+            filter: brightness(0.8);
+        }
+    }
+
 
     label{ 
         color: #00673D;
         font-size: 1.5rem;
         margin-bottom: 1.2rem;
     }
-
-    .filter__option {
-        background: #f5f8fa !important;
-        color: #5c8599 !important;
-    }
-
-    .filter__option--is-focused {
-    background: #d3e2e5 !important;
-    color: #010101 !important;
 }
-
-`
+`;

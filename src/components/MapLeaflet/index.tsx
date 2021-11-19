@@ -1,8 +1,18 @@
+import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-
+import Leaflet from 'leaflet';
 
 import { Container } from './styles';
-import 'leaflet/dist/leaflet.css';
+
+import location from '../../assets/location.svg';
+
+
+const mapPinIcon = Leaflet.icon({
+    iconUrl: location,
+    iconSize: [58, 68],
+    iconAnchor: [29, 68],
+    popupAnchor: [170, 2],
+})
 
 export function MapLeaflet() {
     return (
