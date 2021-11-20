@@ -4,11 +4,12 @@ export const Container = styled.form`
     background: #fff;
     color: #fff;
 
-    z-index:0;
+    z-index:1;
+    position: absolute;
 
-    max-width: 600px;
-    margin: 200px 80px;
-    padding: 20px;
+    width: 500px;
+    margin: 100px;
+    padding: 30px;
 
     border-radius: 2rem;
 
@@ -26,6 +27,7 @@ export const Container = styled.form`
         font-weight: bold;
         font-size: 1.3rem;
         height: 3rem;
+        border: 0;
         border-radius: 3rem;
 
         transition: filter .2s;
@@ -59,6 +61,7 @@ export const ItemForm = styled.div`
         font-weight: bold;
         font-size: 2rem;
         height: 3rem;
+        border: 0;
         border-radius: 5rem;
 
         transition: filter .2s;

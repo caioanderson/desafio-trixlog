@@ -5,11 +5,12 @@ export const ItemInput = styled.div`
     width: 100%;
 
     margin-left: 3rem;
+    margin-right: 3rem;
    
 
     .filter__control {
         white-space: nowrap !important;;
-        width: 450px !important;
+        width: 350px !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
 

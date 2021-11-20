@@ -1,11 +1,13 @@
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useLocation } from '../../hooks/useLocation';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, Polygon } from 'react-leaflet';
 import Leaflet from 'leaflet';
 
 import { Container } from './styles';
 
 import location from '../../assets/location.svg';
 
+const limeOptions = { color: 'lime' }
 
 const mapPinIcon = Leaflet.icon({
     iconUrl: location,
@@ -15,22 +17,32 @@ const mapPinIcon = Leaflet.icon({
 })
 
 export function MapLeaflet() {
+
+    const { paradas, position, polyne } = useLocation();
+
     return (
         <Container>
             <MapContainer
-                style={{ height: '100vh', position: 'relative' }}
-                center={[-3.71839, -38.5434]}
-                zoom={18}
+                style={{ height: '100%', width: '100%' }}
+                center={[position.lat, position.lng]}
+                zoom={15}
                 scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={[51.505, -0.09]}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
-                </Marker>
+                {paradas.length >= 2 && <Polygon pathOptions={limeOptions} positions={polyne} />}
+
+                {paradas.map((item, index) => (
+                    <Marker
+                        icon={mapPinIcon}
+                        position={[item.position.lat, item.position.lng]}
+                        key={index}>
+                        <Popup>
+                            {item.name}
+                        </Popup>
+                    </Marker>
+                ))}
             </MapContainer>
         </Container>
     );

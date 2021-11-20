@@ -30,9 +30,8 @@ export function Form() {
                     <button onClick={() => addParada(paradas.length + 1)}>+</button>
                 </div>
             </ItemForm>
-                {paradas.map(() => (
-                    <Input />
-                ))}
+            
+            {paradas.length > 0 && paradas.map((item, index) => <Input name='Anderson' key={index} />)}
 
             {paradas.length !== 1 && <button>
                 Criar rota
