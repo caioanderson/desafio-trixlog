@@ -12,4 +12,20 @@ export const Container = styled.div`
 
     overflow: hidden;
 
+    .leaflet-routing-alt{
+        display: none;
+    }
+
+    
+    /* img.leaflet-marker-icon {
+        display: none;
+    }
+
+    img.leaflet-zoom-animated {
+        display: none;
+    }
+
+    img.leaflet-interative {
+        display: none;
+    } */
 `

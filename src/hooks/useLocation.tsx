@@ -4,7 +4,6 @@ interface LocationContextData {
     position: Position;
     addParada: (newParada: Parada) => void;
     changePosition: (newPosition: Position) => void;
-    polyne : [];
 }
 
 const LocationContext = createContext<LocationContextData>({} as LocationContextData);
@@ -53,11 +52,8 @@ export function LocationProvider({ children }: LocationProviderProps) {
         return listCoords;
     }
 
-    const polyne = routesConstructor();
-
-
     return (
-        <LocationContext.Provider value={{ paradas, addParada, position, changePosition, polyne }}>
+        <LocationContext.Provider value={{ paradas, addParada, position, changePosition }}>
             {children}
         </LocationContext.Provider>
     )
