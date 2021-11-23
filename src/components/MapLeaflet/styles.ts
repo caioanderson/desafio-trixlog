@@ -16,16 +16,4 @@ export const Container = styled.div`
         display: none;
     }
 
-    
-    /* img.leaflet-marker-icon {
-        display: none;
-    }
-
-    img.leaflet-zoom-animated {
-        display: none;
-    }
-
-    img.leaflet-interative {
-        display: none;
-    } */
 `

@@ -1,28 +1,73 @@
 import styled from 'styled-components';
 
-export const Container = styled.form`
+export const Container = styled.div`
     background: #fff;
     color: #fff;
 
     z-index:1;
     position: absolute;
 
-    width: 500px;
-    margin: 100px;
-    padding: 30px;
+    top: 100px;
+    left: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     border-radius: 2rem;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    .header{
+        margin-top: 2rem;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+
+        label{
+            color: var(--violet-500);
+            font-size: 1.5rem;
+        }
+
+        button{
+        width: 17%;
+        color: var(--white);
+        background: var(--violet-500);
+        font-weight: bold;
+        font-size: 2rem;
+        height: 3rem;
+        border: 0;
+        border-radius: 5rem;
+
+        transition: filter .2s;
+
+        button:hover{
+            filter: brightness(0.8);
+        }
+    }
+    }
+
+`
+
+export const FormRotas = styled.form`
+
+    /* width: 500px; */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     span{
         color: #000;
     }
 
     button{
-        margin: 0 3rem;
-        margin-bottom: 1rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
         width: 80%;
 
-        background: #00673D;
+        background: var(--violet-500);
         color: #fff;
         font-weight: bold;
         font-size: 1.3rem;
@@ -42,11 +87,26 @@ export const Container = styled.form`
 
 export const ItemForm = styled.div`
 
-    margin-left: 3rem;
-    margin-top: 3rem;
+    /* margin-left: 3rem; */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     display: flex;
+    align-items: center;
     flex-direction: column;
+
+    span{
+        color: var(--violet-500);
+        font-size: 1rem;
+        margin-bottom: .5rem;
+    }
+
+    input{
+        border: .5px solid var(--violet-500);
+        padding: .7rem;
+        border-radius: 2rem;
+        width: 100%;
+    }
 
     div{
         display: flex;
@@ -55,9 +115,9 @@ export const ItemForm = styled.div`
 
         button{
         width: 12%;
+        margin-top: 3rem;
 
-        background: #00673D;
-        color: #fff;
+        background: var(--violet-500);
         font-weight: bold;
         font-size: 2rem;
         height: 3rem;
@@ -73,9 +133,41 @@ export const ItemForm = styled.div`
 
 
     label{ 
-        color: #00673D;
+        color: var(--violet-500);
         font-size: 1.5rem;
         margin-bottom: 1.2rem;
     }
+    
 }
 `;
+
+export const SideBar = styled.div`
+
+    background: var(--violet-500);
+
+    position: absolute;
+
+    z-index:1;
+    bottom: 50px;
+    right: 30px;
+
+    width: 100px;
+    border-radius: .5rem;
+
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    span{
+        color: var(--white);
+    }
+
+    span + span{
+        font-weight: bold;
+    }
+
+
+`

@@ -1,43 +1,71 @@
-import { Container, ItemForm } from './styles';
+import { FormRotas, ItemForm, Container, SideBar } from './styles';
 
 import { FormEvent, useState } from "react";
 import { Input } from '../Input';
+import { useAuth } from '../../hooks/useAuth';
+import { api } from '../../services/api';
+import { useLocation } from '../../hooks/useLocation';
 
 
 export function Form() {
 
-    const [paradas, setParadas] = useState([0]);
+    const [countParadas, setCountParadas] = useState([0]);
+    const [nameRoute, setNameRoute] = useState('');
+
+    const { idVeiculo } = useAuth();
+    const { paradas, routesConstructor } = useLocation();
 
     function addParada(newParada: number) {
-        const parada = [...paradas, newParada];
-        setParadas(parada);
+        const parada = [...countParadas, newParada];
+        setCountParadas(parada);
 
     }
 
-    function handleSubmit(event: FormEvent) {
+    async function handleSubmit(event: FormEvent) {
         event.preventDefault();
+        const now = new Date();
+        const response = await api.post('/rotas/salvar',
+            {
+                name: nameRoute,
+                stop: paradas,
+                routeDate: now.toISOString(),
+                user: {
+                    idVeiculo
+                }
+            });
+
+        routesConstructor(response.data);
     }
 
     return (
-        <Container onSubmit={handleSubmit}>
-            <ItemForm>
-                <label>Identificador do veiculo</label>
-                <span>Veiculo - 16AASD712</span>
-            </ItemForm>
-            <ItemForm>
-                <div>
+        <>
+            <Container>
+                <div className='header'>
                     <label>Adicionar parada</label>
-                    <button onClick={() => addParada(paradas.length + 1)}>+</button>
+                    <button onClick={() => addParada(countParadas.length + 1)}>+</button>
                 </div>
-            </ItemForm>
-            
-            {paradas.length > 0 && paradas.map((item, index) => <Input name='Anderson' key={index} />)}
 
-            {paradas.length !== 1 && <button>
-                Criar rota
-            </button>}
+                <FormRotas onSubmit={handleSubmit}>
+                    <ItemForm>
+                        <span>Nome da rota</span>
+                        <input type="text"
+                            onChange={e => setNameRoute(e.target.value)} value={nameRoute} />
+                    </ItemForm>
+                    {countParadas.length > 0 && countParadas.map((item, index) => <Input key={index} />)}
+
+                    {countParadas.length !== 1 && <button>
+                        Criar rota
+                    </button>}
 
 
-        </Container>
+                </FormRotas>
+            </Container>
+
+            <SideBar>
+                <span>Veiculo</span>
+                <span>{idVeiculo}</span>
+            </SideBar>
+
+        </>
     )
 }

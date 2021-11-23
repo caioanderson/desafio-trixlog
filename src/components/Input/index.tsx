@@ -1,34 +1,29 @@
 import { useLocation } from '../../hooks/useLocation';
 import AsyncSelect from "react-select/async";
-import { useEffect, useState } from "react";
 import { fetchLocalMapBox } from '../../services/apiMapBox';
 
 import { ItemInput } from './styles';
-interface InputProps {
-    name: string;
+import { useState } from 'react';
+interface NameLocation {
+    label: string;
+    value: string;
 }
 
-export function Input({ name }: InputProps) {
+export function Input() {
 
-    const { addParada, changePosition } = useLocation();
+    const { addParada } = useLocation();
 
-    const [address, setAddress] = useState<{
-        label: string;
-        value: string;
-    } | null>(null);
+    const [address, setAddress] = useState<NameLocation>();
 
     function handleChangeSelect(event: any) {
-        console.log("changed", event);
         setAddress({ label: event.place, value: event.place });
-
         const position = {
             lat: event.coords[1],
             lng: event.coords[0],
+
         }
 
-        // changePosition(position);
-
-        addParada({ name, position });
+        addParada({position});
     }
 
     //Carregando a localidade com MapBox
@@ -36,6 +31,7 @@ export function Input({ name }: InputProps) {
         if (inputValue.length < 5) return;
         let items: any = [];
         const response = await fetchLocalMapBox(inputValue);
+        // eslint-disable-next-line array-callback-return
         response.features.map((item: any) => {
             items.push({
                 label: item.place_name,

@@ -2,10 +2,6 @@ import styled from 'styled-components';
 
 export const ItemInput = styled.div`
     margin-bottom: 1rem;
-    width: 100%;
-
-    margin-left: 3rem;
-    margin-right: 3rem;
    
 
     .filter__control {

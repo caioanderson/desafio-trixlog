@@ -1,6 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
+    :root{
+        --violet-50: #8D91EB;
+        --violet-500: #3A3EBF;
+        --blue-violet: #3E44C9;
+
+        --white: #fff;
+    }
+
     * {
         margin: 0;
         padding: 0;
