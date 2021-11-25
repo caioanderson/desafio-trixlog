@@ -7,6 +7,7 @@ interface LocationContextData {
     changePosition: (newPosition: Position) => void;
     routesConstructor: (routeId: string) => void;
     loadRotas: boolean;
+    // idRota: string;
 }
 
 const LocationContext = createContext<LocationContextData>({} as LocationContextData);
@@ -29,7 +30,7 @@ export function LocationProvider({ children }: LocationProviderProps) {
 
     const [paradas, setParadas] = useState<Position[]>([]);
     const [position, setPosition] = useState<Position>(initialPosition);
-    const [idRota, setIdRota] = useState('');
+    // const [idRota, setIdRota] = useState('');
     const [loadRotas, setLoadRotas] = useState(false);
 
     function changePosition(newPosition: Position) {
@@ -46,16 +47,19 @@ export function LocationProvider({ children }: LocationProviderProps) {
 
         const parada = [...paradas, newPosition];
         setParadas(parada);
-        
+
     }
 
-    async function routesConstructor(routeId : string) {
-        setIdRota(routeId);
+    async function routesConstructor(routeId: string) {
+    // console.log("🚀 ~ file: useLocation.tsx ~ line 54 ~ routesConstructor ~ routeId", routeId)
 
-         const response = await api.get(`rotas/${idRota}`);
-         
-         setParadas(response.data);
-         setLoadRotas(!loadRotas);
+        if(routeId) {
+            const response = await api.get(`rotas/${routeId}`);
+            setParadas(response.data);
+            setLoadRotas(!loadRotas);
+        }else {
+            console.log('Entrei')
+        }
 
     }
 

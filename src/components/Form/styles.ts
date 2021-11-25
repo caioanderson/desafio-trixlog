@@ -8,7 +8,7 @@ export const Container = styled.div`
     position: absolute;
 
     top: 100px;
-    left: 100px;
+    left: 30px;
 
     display: flex;
     flex-direction: column;
@@ -106,6 +106,7 @@ export const ItemForm = styled.div`
         padding: .7rem;
         border-radius: 2rem;
         width: 100%;
+        text-align: center;
     }
 
     div{
@@ -149,17 +150,30 @@ export const SideBar = styled.div`
 
     z-index:1;
     bottom: 50px;
-    right: 30px;
+    left: 30px;
 
     width: 100px;
     border-radius: .5rem;
 
-    height: 100px;
+    height: 150px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    a{
+        border: 0;
+        background: none;
+        color: #FF5151;
+    }
 
     span{
         color: var(--white);

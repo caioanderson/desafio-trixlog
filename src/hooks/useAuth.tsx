@@ -4,6 +4,7 @@ interface AuthContextData {
     idVeiculo: string;
     changeIdVeiculo: (id: string) => void;
     signed: string;
+    Logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -22,6 +23,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIdVeiculo(id);
     }
 
+    function Logout(){
+        localStorage.removeItem("@AuthContx:id");
+    }
+
     useEffect(() => {
          function loadStorage() {
             const storageUser = localStorage.getItem('@AuthContx:id');
@@ -38,7 +43,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     
 
     return (
-        <AuthContext.Provider value={{ idVeiculo, changeIdVeiculo, signed }}>
+        <AuthContext.Provider value={{ idVeiculo, changeIdVeiculo, signed, Logout }}>
             {children}
         </AuthContext.Provider>
     )

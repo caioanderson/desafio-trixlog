@@ -31,8 +31,8 @@ export function Register() {
             }
 
             const response = await api.post('users', user);
-            console.log(response);
             changeIdVeiculo(response.data.idVeiculo);
+            localStorage.setItem("@AuthContx:id", JSON.stringify(idVeiculo));
             navigate('/');
 
         }
@@ -65,10 +65,13 @@ export function Register() {
                         </div>
 
                         <div className='footer'>
-                            <button onClick={() => navigate('/')}>Voltar</button>
                             <button type="submit">Cadastrar</button>
                         </div>
                     </form>
+
+                    <div className='goBack'>
+                    <button onClick={() => navigate('/')}>Voltar</button>
+                    </div>
                 </div>
 
             </SectionRegister>

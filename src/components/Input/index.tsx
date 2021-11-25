@@ -14,6 +14,7 @@ export function Input() {
     const { addParada } = useLocation();
 
     const [address, setAddress] = useState<NameLocation>();
+    const [disabledOption, setDisabledOption] = useState(false);
 
     function handleChangeSelect(event: any) {
         setAddress({ label: event.place, value: event.place });
@@ -22,7 +23,7 @@ export function Input() {
             lng: event.coords[0],
 
         }
-
+        setDisabledOption(!disabledOption)
         addParada({position});
     }
 
@@ -40,7 +41,6 @@ export function Input() {
                 place: item.place_name
             });
         });
-
         callback(items);
     }
 
@@ -53,6 +53,8 @@ export function Input() {
                 loadOptions={loadOptionsAddress}
                 onChange={handleChangeSelect}
                 value={address}
+                isDisabled={disabledOption}
+                aria-label="cost-input"
             />
         </ItemInput>
     )

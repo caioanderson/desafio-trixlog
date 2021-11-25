@@ -12,8 +12,19 @@ export const Container = styled.div`
 
     overflow: hidden;
 
-    .leaflet-routing-alt{
-        display: none;
+    .leaflet-bar{
+        width: 20% !important;
+        padding: 1rem;
+        
+        h2{
+            color: var(--violet-500);
+            font-size: .9rem;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+ 
+        }
     }
 
+    
 `

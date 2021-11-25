@@ -18,6 +18,19 @@ export const SectionLogin = styled.section`
     align-items: center;
     justify-content: center;
 
+    .registrar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button{
+            border: 0;
+            color: var(--violet-500);
+            background: none;
+        }
+
+    }
+
     header{
 
         margin-bottom: 4.063rem;
@@ -69,28 +82,19 @@ export const SectionLogin = styled.section`
                 margin-top: 2rem;
 
                 display: flex;
-                flex-direction: row;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: center;
 
                 button{
-                    border: 0;
-                    background: none;
-                    color: var(--violet-500);
-
-                }
-
-
-               button + button{
                     border: 0;
                     background-color: var(--violet-500);
                     color: var(--white);
                     border-radius: 8px;
                     height: 3rem;
-                    width: 8rem;
+                    width: 70%;
+
                 }
 
-                
             }
         }
     }

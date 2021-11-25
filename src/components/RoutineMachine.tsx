@@ -20,9 +20,10 @@ const createRoutineMachineLayer = ({ ...props }) => {
             addWaypoints: false,
             missingRouteTolerance: 0,
             styles: [
-                { color: "#6FA1EC", weight: 5 }
+                { color: "#6FA1EC", weight: 5, opacity: 0.6 }
             ]
         },
+        
     });
 
     return instance;

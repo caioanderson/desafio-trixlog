@@ -12,7 +12,7 @@ export function Form() {
     const [countParadas, setCountParadas] = useState([0]);
     const [nameRoute, setNameRoute] = useState('');
 
-    const { idVeiculo } = useAuth();
+    const { idVeiculo, Logout } = useAuth();
     const { paradas, routesConstructor } = useLocation();
 
     function addParada(newParada: number) {
@@ -24,17 +24,31 @@ export function Form() {
     async function handleSubmit(event: FormEvent) {
         event.preventDefault();
         const now = new Date();
-        const response = await api.post('/rotas/salvar',
-            {
-                name: nameRoute,
-                stop: paradas,
-                routeDate: now.toISOString(),
-                user: {
-                    idVeiculo
-                }
+        try {
+            await api.post('/rotas/salvar',
+                {
+                    name: nameRoute,
+                    stop: paradas,
+                    routeDate: now.toISOString(),
+                    user: {
+                        idVeiculo: idVeiculo
+                    }
+                },
+
+            ).then(response => {
+                const { data } = response;
+                routesConstructor(data)
             });
 
-        routesConstructor(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+
+     
+    }
+
+    function logOut(){
+        Logout();
     }
 
     return (
@@ -42,13 +56,14 @@ export function Form() {
             <Container>
                 <div className='header'>
                     <label>Adicionar parada</label>
-                    <button onClick={() => addParada(countParadas.length + 1)}>+</button>
+                    <button
+                        onClick={() => addParada(countParadas.length + 1)}>+</button>
                 </div>
 
                 <FormRotas onSubmit={handleSubmit}>
                     <ItemForm>
                         <span>Nome da rota</span>
-                        <input type="text"
+                        <input type="text" placeholder='Digite o nome da rota'
                             onChange={e => setNameRoute(e.target.value)} value={nameRoute} />
                     </ItemForm>
                     {countParadas.length > 0 && countParadas.map((item, index) => <Input key={index} />)}
@@ -62,8 +77,11 @@ export function Form() {
             </Container>
 
             <SideBar>
-                <span>Veiculo</span>
-                <span>{idVeiculo}</span>
+                <div>
+                    <span>Veiculo</span>
+                    <span>{idVeiculo}</span>
+                </div>
+                <a href='/' onClick={logOut}>Deslogar</a>
             </SideBar>
 
         </>

@@ -20,18 +20,7 @@ const mapPinIcon = L.icon({
 export function MapLeaflet() {
 
     const { position, paradas, loadRotas } = useLocation();
-    // console.log("🚀 ~ file: index.tsx ~ line 29 ~ MapLeaflet ~ paradas", paradas)
 
-    // function waypoints(){
-    //     let auxRotas: any = [];
-    //     let coords: any = [];
-    //     paradas.map((item) => {
-    //         const rotas = [item.lat, item.lng];
-    //         auxRotas = [[...coords], rotas];
-    //         coords = [item.lat, item.lng];
-    //     })
-    //     return auxRotas;
-    // }
 
     return (
         <Container>

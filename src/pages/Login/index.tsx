@@ -11,9 +11,9 @@ export function Login() {
 
     const navigate = useNavigate();
 
-    const { idVeiculo, changeIdVeiculo } = useAuth();
+    const { changeIdVeiculo } = useAuth();
 
-    const [idVeiculoLogin, setIdVeiculoLogin] = useState(idVeiculo === '' ? '' : idVeiculo);
+    const [idVeiculoLogin, setIdVeiculoLogin] = useState('');
     const [password, setPassword] = useState('');
 
     async function Login(event: FormEvent) {
@@ -25,13 +25,16 @@ export function Login() {
         } else {
             const user = { idVeiculoLogin, password };
 
-             await api.post(`login/${idVeiculoLogin}`, user)
-            .then(response => setIdVeiculoLogin(response.data));
-            
-            localStorage.setItem("@AuthContx:id", JSON.stringify(idVeiculoLogin));
-            changeIdVeiculo(idVeiculoLogin);
+            await api.post(`login/${idVeiculoLogin}`, user)
+                .then(response => {
+                    setIdVeiculoLogin(response.data)
+                    changeIdVeiculo(idVeiculoLogin);
+                    localStorage.setItem("@AuthContx:id", JSON.stringify(idVeiculoLogin));
+                    navigate('/');
+                });
+
         }
-        
+
     }
 
 
@@ -57,10 +60,12 @@ export function Login() {
                         </div>
 
                         <div className='footer'>
-                            <button onClick={() => navigate('/create')}>Registrar</button>
                             <button type="submit">Login</button>
                         </div>
                     </form>
+                    <div className='registrar'>
+                        <button onClick={() => navigate('/create')}>Registrar</button>
+                    </div>
                 </div>
 
             </SectionLogin>
